@@ -1,0 +1,1062 @@
+/* Estilos gerais */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #1e1e1e;
+    color: #ffffff;
+    min-height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column; /* Para alinhar os elementos verticalmente */
+}
+
+/* Navbar no topo */
+.navbar {
+    width: 100%;
+    background-color: #1e1e1e; /* Fundo escuro */
+    display: flex;
+    justify-content: space-evenly; /* Distribui igualmente os itens */
+    align-items: center;
+    padding: 10px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Sombra */
+    position: fixed; /* Fixa no topo */
+    top: 0;
+    z-index: 1000;
+}
+
+/* Links na navbar */
+.navbar a {
+    text-decoration: none;
+    color: #ffffff; /* Texto branco */
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    flex-grow: 1; /* Faz com que cada link ocupe espaço igual */
+    max-width: 200px; /* Limita a largura máxima de cada link */
+}
+
+.navbar a:hover {
+    background-color: #333333; /* Destaque no hover */
+}
+
+/* Estilo dos botões de ação */
+.edit-btn, .delete-btn {
+    padding: 5px 10px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 5px;
+}
+
+.edit-btn {
+    background-color: #76c7c0; /* Verde */
+    color: #ffffff;
+}
+
+.edit-btn:hover {
+    background-color: #5ba49e;
+}
+
+.delete-btn {
+    background-color: #e74c3c; /* Vermelho */
+    color: #ffffff;
+}
+
+.delete-btn:hover {
+    background-color: #c0392b;
+}
+
+
+/* Botão de menu na navbar */
+.sidebar-toggle {
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 24px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+/* Ajuste do conteúdo principal */
+.content {
+    margin-top: 60px; /* Espaço para a navbar fixa */
+    padding: 20px;
+    max-width: -webkit-fill-available;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #1e1e1e; /* Fundo escuro */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+}
+
+/* Estilo dos cards */
+.card {
+    background-color: #2b2b2b;
+    color: #ffffff;
+    margin: 15px 0;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.8);
+}
+
+/* Ajuste responsivo */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navbar nav a {
+        margin: 10px 0; /* Ajuste para links empilhados */
+    }
+
+    .content {
+        padding: 15px;
+    }
+    #calendar-grid {
+        grid-template-columns: repeat(4, 1fr); /* Reduz para 4 colunas */
+    }
+    #mini-calendar {
+        grid-template-columns: repeat(4, 1fr); /* Reduz para 4 colunas */
+    }
+}
+
+
+
+.content h1 {
+
+    /* Centraliza os elementos filhos */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza horizontalmente */
+    text-align: center; /* Centraliza o texto */
+  
+}
+
+
+
+
+
+/* Oculta seções não ativas */
+.hidden {
+    display: none;
+}
+
+/* Estilos do Dashboard */
+.card {
+    background-color: #2b2b2b; /* Fundo do card escuro */
+    color: #ffffff; /* Texto branco */
+    margin: 15px 0;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6); /* Sombra para destaque */
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-top: 20px;
+}
+
+.card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.8); /* Destaque no hover */
+}
+
+.card h2 {
+    margin-top: 0;
+}
+
+.card p {
+    margin: 5px 0 0;
+}
+
+/* Ajuste responsivo */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 200px;
+    }
+
+    .content {
+        
+    }
+
+    .card {
+        padding: 15px;
+    }
+}
+
+
+
+/* Estilo do formulário de tarefas */
+#task-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-bottom: 20px;
+}
+
+#task-form label {
+    font-weight: bold;
+    color: #ffffff; /* Texto branco */
+}
+
+#task-form input,
+#task-form textarea,
+#task-form button {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #555555; /* Borda escura */
+    background-color: #2b2b2b; /* Fundo escuro */
+    color: #ffffff; /* Texto branco */
+    border-radius: 5px;
+}
+
+#task-form button {
+    background-color: #333333;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#task-form button:hover {
+    background-color: #444444; /* Destaque no hover */
+}
+
+/* Estilo da lista de tarefas */
+#tasks {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 45px;
+}
+
+.task-card {
+    background-color: #1e1e1e; /* Fundo do card escuro */
+    color: #e0e0e0; /* Texto cinza claro */
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4); /* Sombra escura */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 350px;
+    
+}
+
+.task-card h3 {
+    margin: 0 0 10px;
+    color: #ffffff; /* Títulos brancos */
+    font-size: 20px;
+}
+
+.task-card .progress-bar {
+    background-color: #333333; /* Fundo escuro */
+    height: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.task-card .progress-fill {
+    background-color: #76c7c0; /* Destaque verde */
+    height: 100%;
+    transition: width 0.3s ease;
+}
+
+.task-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.task-buttons button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: #333333; /* Fundo escuro */
+    color: #ffffff; /* Texto branco */
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.task-buttons button:hover {
+    background-color: #444444; /* Destaque no hover */
+}
+
+/* Total de tempo gasto */
+#total-time {
+    margin-top: 20px;
+    font-weight: bold;
+    color: #ffffff; /* Texto branco */
+}
+
+/* Estilo do resumo das tarefas no Dashboard */
+.card-content {
+    margin-top: 10px;
+    background-color: #1e1e1e; /* Fundo escuro */
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.7); /* Sombra interna */
+    color: #e0e0e0; /* Texto cinza claro */
+    
+}
+
+.task-summary {
+    margin-bottom: 10px;
+}
+
+.task-summary p {
+    margin: 5px 0;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #ffffff; /* Texto branco */
+}
+
+.task-summary strong {
+    color: #76c7c0; /* Destaque verde */
+}
+
+/* Resumo financeiro */
+.financial-summary {
+    margin-bottom: 20px;
+    background-color: #1e1e1e; /* Fundo escuro */
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6); /* Sombra escura */
+    color: #e0e0e0; /* Texto cinza claro */
+}
+
+.financial-summary p {
+    font-size: 16px;
+    margin: 10px 0;
+}
+
+.financial-summary span {
+    font-weight: bold;
+    color: #76c7c0; /* Destaque verde */
+}
+
+/* Formulário financeiro */
+#financial-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#financial-form label {
+    font-weight: bold;
+    color: #ffffff; /* Texto branco */
+}
+
+#financial-form input,
+#financial-form select,
+#financial-form button {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #555555; /* Borda escura */
+    background-color: #2b2b2b; /* Fundo escuro */
+    color: #ffffff; /* Texto branco */
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+#financial-form button {
+    background-color: #333333;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#financial-form button:hover {
+    background-color: #444444; /* Destaque no hover */
+}
+
+/* Tabela de registros */
+.financial-records table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #1e1e1e; /* Fundo escuro */
+}
+
+.financial-records th,
+.financial-records td {
+    border: 1px solid #333333; /* Borda escura */
+    padding: 10px;
+    text-align: left;
+    color: #e0e0e0; /* Texto cinza claro */
+}
+
+.financial-records th {
+    background-color: #333333; /* Cabeçalho escuro */
+    color: #ffffff; /* Texto branco */
+}
+
+.financial-records td {
+    font-size: 14px;
+}
+
+/* Gráficos financeiros */
+.financial-charts {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #1e1e1e; /* Fundo escuro */
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6); /* Sombra escura */
+}
+
+.chart-container {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #2b2b2b; /* Fundo intermediário */
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4); /* Sombra */
+    text-align: center;
+}
+
+.chart-container canvas {
+    max-width: 100%;
+}
+
+/* Estilo para o termômetro de gastos */
+#spending-thermometer {
+    margin: 0 auto;
+    display: block;
+    max-width: 300px;
+}
+
+/* Títulos dos gráficos */
+.financial-charts h2,
+.financial-charts h3 {
+    color: #76c7c0; /* Destaque verde */
+    margin-bottom: 10px;
+    font-size: 18px;
+    text-align: center;
+}
+
+/* Estilo para o velocímetro */
+#spending-thermometer {
+    position: relative;
+    margin: 20px auto;
+    display: block;
+    max-width: 300px;
+    border-radius: 50%;
+    background: linear-gradient(90deg, #76c7c0 50%, #f39c12 80%, #e74c3c 100%);
+    padding: 10px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+#spending-thermometer::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 80%;
+    border-radius: 50%;
+    background: #1e1e1e; /* Fundo interno escuro */
+}
+
+#spending-thermometer-needle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform-origin: bottom center;
+    width: 2px;
+    height: 50%;
+    background: #ffffff; /* Cor da agulha */
+    transform: rotate(0deg); /* Atualizado dinamicamente */
+}
+
+/* Estilo para o contêiner de definição de limite de gastos */
+.financial-limit {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #1e1e1e; /* Fundo escuro */
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6); /* Sombra escura */
+    color: #e0e0e0; /* Texto cinza claro */
+    display: grid;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Estilo para o rótulo do limite de gastos */
+.financial-limit label {
+    font-weight: bold;
+    color: #ffffff; /* Texto branco */
+    font-size: 16px;
+}
+
+/* Estilo para o campo de entrada do limite */
+#spending-limit {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #555555; /* Borda escura */
+    background-color: #2b2b2b; /* Fundo escuro */
+    color: #ffffff; /* Texto branco */
+    border-radius: 5px;
+    
+}
+
+/* Estilo para os botões */
+#update-limit,
+#reset-limit {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #333333; /* Fundo escuro */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+/* Cor de fundo no hover dos botões */
+#update-limit:hover {
+    background-color: #76c7c0; /* Cor verde para destaque */
+    transform: scale(1.05); /* Efeito de zoom ao passar o mouse */
+}
+
+#reset-limit:hover {
+    background-color: #e74c3c; /* Cor vermelha para destaque */
+    transform: scale(1.05); /* Efeito de zoom ao passar o mouse */
+}
+
+/* Alinhamento dos botões */
+#update-limit,
+#reset-limit {
+    align-self: flex-start; /* Botões alinhados à esquerda */
+    min-width: 150px;
+    text-align: center;
+}
+
+/* Estilo para mensagens de feedback */
+.feedback-message {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #76c7c0;
+    color: #1c1c1c;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    font-size: 14px;
+    z-index: 1000;
+    animation: fadeIn 0.5s ease, fadeOut 0.5s 2.5s ease;
+}
+
+/* Animação para aparecer e desaparecer */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
+
+
+
+
+/* Estilo do resumo financeiro no Dashboard */
+.card-content {
+    margin-top: 10px;
+    background-color: #1e1e1e; /* Fundo escuro */
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.7); /* Sombra interna */
+    color: #e0e0e0; /* Texto cinza claro */
+}
+
+.card-content p {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+.card-content strong {
+    color: #76c7c0; /* Destaque verde */
+}
+
+/* Estilo do formulário de rotinas */
+#routine-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#routine-form label {
+    font-weight: bold;
+    color: #ffffff; /* Texto branco */
+}
+
+#routine-form input,
+#routine-form select,
+#routine-form button {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #555555; /* Borda escura */
+    background-color: #2b2b2b; /* Fundo escuro */
+    color: #ffffff; /* Texto branco */
+    border-radius: 5px;
+}
+
+#routine-form button {
+    background-color: #333333;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#routine-form button:hover {
+    background-color: #444444; /* Destaque no hover */
+}
+
+/* Lista de rotinas */
+.routine-list ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+    margin-top: 20px;
+    flex-direction: row;
+}
+
+.routine-list li {
+    background-color: #1e1e1e; /* Fundo escuro */
+    width: 100%;
+    max-width: 350px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4); /* Sombra escura */
+    color: #e0e0e0; /* Texto cinza claro */
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    margin-top: 40px
+}
+
+.routine-list li p {
+    margin: 0;
+    font-size: 17px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+.routine-list li span {
+    font-weight: bold;
+    color: #76c7c0; /* Destaque verde */
+}
+
+/* Relatório */
+.routine-report {
+    margin-top: 80px;
+    text-align: center;
+    color: #e0e0e0; /* Texto cinza claro */
+}
+
+/* Adiciona o resumo de rotinas no card do Dashboard */
+#dashboard .routine-summary {
+    margin-top: 10px;
+    background-color: #1e1e1e; /* Fundo escuro */
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.7); /* Sombra interna */
+    font-size: 14px;
+    line-height: 1.4;
+    color: #e0e0e0; /* Texto cinza claro */
+}
+
+.routine-summary p {
+    margin: 5px 0;
+    color: #ffffff; /* Texto branco */
+}
+
+
+
+
+
+/* Contêiner da barra de progresso */
+.progress-bar-container {
+    width: 100%;
+    background-color: #e0e0e0;
+    border-radius: 15px;
+    overflow: hidden;
+    height: 25px;
+    margin: 20px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Barra de preenchimento */
+.progress-bar-fill {
+    height: 100%;
+    width: 0%;
+    background-color: #76c7c0;
+    transition: width 0.5s ease, background-color 0.5s ease;
+}
+
+/* Texto de porcentagem */
+.progress-percentage {
+    text-align: center;
+    font-size: 16px;
+    color: #e7e2e2;
+    margin-top: 10px;
+}
+
+.progress-bar-container {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 30px;
+    background-color: #d3d3d3; /* Cor de fundo */
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-bar div {
+    height: 100%;
+    width: 0%; /* Começa com 0% */
+    transition: width 0.5s ease; /* Animação suave */
+    border-radius: 5px;
+}
+
+.sidebar-toggle {
+    top: 10px;
+    left: 10px;
+    position: fixed;
+    z-index: 1000;
+}
+
+
+
+
+/* Seção principal do calendário */
+#calendar-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    background-color: #1e1e1e; /* Fundo escuro */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6); /* Sombra */
+    color: #ffffff;
+}
+
+/* Cabeçalho do calendário */
+#calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #2b2b2b;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+}
+
+#calendar-header button {
+    background-color: #333333;
+    color: #ffffff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#calendar-header button:hover {
+    background-color: #444444; /* Destaque no hover */
+}
+
+
+
+/* Grid do calendário */
+#calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* 7 colunas para os dias da semana */
+    gap: 10px;
+    background-color: #1e1e1e;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+/* Estilo dos dias */
+#calendar-grid div {
+    padding: 15px;
+    text-align: center;
+    border-radius: 5px;
+    background-color: #2b2b2b; /* Fundo do dia */
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#calendar-grid div:hover {
+    background-color: #333333; /* Destaque no hover */
+}
+
+/* Estilo para o dia selecionado */
+#calendar-grid .selected {
+    background-color: #76c7c0; /* Destaque verde */
+    color: #000000; /* Texto escuro */
+    font-weight: bold;
+}
+
+/* Detalhes do dia selecionado */
+#calendar-details {
+    padding: 15px;
+    background-color: #2b2b2b;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+#calendar-details h2, #calendar-details h3 {
+    margin-bottom: 10px;
+    color: #76c7c0; /* Destaque verde */
+}
+
+
+
+
+
+/* Mini calendário no Dashboard */
+.calendar-summary {
+    background-color: #2b2b2b; /* Fundo do card escuro */
+    color: #ffffff; /* Texto branco */
+    margin: 15px 0;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6); /* Sombra */
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Espaço entre elementos */
+    align-items: center; /* Centraliza os elementos */
+}
+
+#mini-calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* 7 colunas para os dias da semana */
+    gap: 5px;
+    width: 100%; /* Ocupa a largura total do card */
+    padding: 10px;
+    background-color: #1e1e1e; /* Fundo escuro do mini calendário */
+    border-radius: 5px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.7); /* Sombra interna */
+}
+
+#mini-calendar div {
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    background-color: #2b2b2b; /* Fundo do dia */
+    color: #ffffff; /* Texto branco */
+    font-size: 12px;
+    transition: background-color 0.3s ease;
+}
+
+#mini-calendar div:hover {
+    background-color: #333333; /* Destaque no hover */
+}
+
+#mini-calendar .has-data {
+    background-color: #76c7c0; /* Destaque para dias com dados */
+    font-weight: bold;
+    color: #000000; /* Texto escuro */
+}
+
+
+
+
+
+
+/* Destaque ao navegar com o teclado */
+#calendar-grid div:focus, #mini-calendar div:focus {
+    outline: 2px solid #76c7c0;
+    background-color: #444444; /* Destaque para acessibilidade */
+}
+
+
+/* Ajuste para telas menores (celulares) */
+@media (max-width: 768px) {
+    #mini-calendar {
+        grid-template-columns: repeat(7, 1fr); /* Mantém 7 colunas */
+        gap: 3px; /* Reduz o espaçamento */
+        padding: 5px; /* Menor padding */
+    }
+
+    #mini-calendar .calendar-day {
+        font-size: 12px; /* Reduz o tamanho do texto */
+        height: 40px; /* Reduz a altura */
+        padding: 5px; /* Reduz o padding */
+    }
+}
+
+/* Ajuste para telas muito pequenas (exemplo: 320px) */
+@media (max-width: 480px) {
+    #mini-calendar {
+        grid-template-columns: repeat(7, 1fr);
+        gap: 2px;
+    }
+
+    #mini-calendar .calendar-day {
+        font-size: 10px;
+        height: 35px;
+        padding: 3px;
+    }
+}
+
+/* Ajustes para telas menores (tablets e celulares) */
+@media (max-width: 768px) {
+    #calendar-container {
+        max-width: 100%;
+        padding: 5px;
+    }
+
+    #calendar-header button {
+        padding: 5px 8px;
+        font-size: 12px;
+    }
+
+    #calendar-grid {
+        gap: 3px;
+    }
+
+    #calendar-grid div {
+        font-size: 12px;
+        height: 60px;
+        padding: 5px;
+    }
+}
+
+/* Ajustes para telas muito pequenas (320px, por exemplo) */
+@media (max-width: 480px) {
+    #calendar-header button {
+        padding: 4px 6px;
+        font-size: 10px;
+    }
+
+    #calendar-grid div {
+        font-size: 10px;
+        height: 50px;
+        padding: 3px;
+    }
+}
+
+
+
+/* Estilo exclusivo para o botão Login no Google */
+/* Navbar (estilos gerais) */
+.google-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+}
+
+.google-navbar nav a {
+    margin-right: 15px;
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+}
+
+#google-login-button {
+    background-color: #4285F4;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#google-login-button:hover {
+    background-color: #357ae8;
+}
+
+/* Card Flutuante */
+#google-login-card {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    width: 350px;
+    padding: 20px;
+    z-index: 1000;
+    display: none;
+}
+
+.google-card-content {
+    text-align: center;
+}
+
+.google-card-content h2 {
+    margin-bottom: 20px;
+    font-size: 20px;
+    color: #333;
+}
+
+#google-login {
+    background-color: #4285F4;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#google-login:hover {
+    background-color: #357ae8;
+}
+
+/* Overlay */
+#google-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: none;
+}

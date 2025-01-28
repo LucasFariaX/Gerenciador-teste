@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento de Tempo</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://apis.google.com/js/api.js"></script>
+
+</head>
+
+<body>
+
+
+
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <button id="toggle-sidebar" class="sidebar-toggle"></button>
+        <nav>
+            <a href="#" id="dashboard-link">Central</a>
+            <a href="#" id="time-management-link">Cronômetro</a>
+            <a href="#" id="routine-link">Rotina</a>
+            <a href="#" id="financial-link">Financeiro</a>
+            <a href="#" id="calendar-link">Calendário</a> <!-- Nova aba -->
+        </nav>
+
+        <button id="google-login-button">Login no Google</button>
+    </header>
+
+    <!-- Card Flutuante -->
+    <div id="google-login-card">
+        <div class="google-card-content">
+            <h2>Faça Login</h2>
+            <button id="google-login">Logar com Google</button>
+        </div>
+    </div>
+
+    <div class="content">
+        <!-- Dashboard -->
+        <div id="dashboard" class="section">
+            <h1>Dashboard</h1>
+
+            <!-- Mini Calendário -->
+            <div class="card calendar-summary">
+                <h2>Calendário - Resumo</h2>
+                <div id="mini-calendar-summary"></div>
+            </div>
+
+            <!-- Cards do Dashboard -->
+            <div class="card" id="time-management-link">
+                <h2>Gerenciamento de Tempo</h2>
+                <p>Resumo das tarefas e atividades programadas.</p>
+            </div>
+            <div class="card">
+                <h2>Rotina</h2>
+                <p>Resumo das metas e hábitos diários.</p>
+            </div>
+            <div class="card">
+                <h2>Financeiro</h2>
+                <p>Resumo das finanças e despesas atuais.</p>
+            </div>
+        </div>
+
+        <!-- Calendário -->
+        <div id="calendar" class="section hidden">
+            <h1>Calendário</h1>
+            <div id="calendar-container">
+                <div id="calendar-header">
+                    <button id="prev-month">◀</button>
+                    <span id="current-month"></span>
+                    <button id="next-month">▶</button>
+                </div>
+                <div id="calendar-grid"></div>
+            </div>
+
+            <!-- Detalhes do dia selecionado -->
+            <div id="calendar-details" class="hidden">
+                <h2>Detalhes do Dia</h2>
+                <h3>Rotinas</h3>
+                <ul id="routine-details"></ul>
+                <h3>Tarefas</h3>
+                <ul id="task-details"></ul>
+                <p id="daily-summary"></p>
+            </div>
+
+            <div class="card">
+                <h2>Eventos do Google Calendar</h2>
+                <div id="google-events">
+                    <p>Carregando eventos...</p>
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <!-- Gerenciamento de Tempo -->
+        <div id="time-management" class="section hidden">
+            <h1>Gerenciamento de Tempo</h1>
+            <form id="task-form">
+                <label for="title">Título da Tarefa:</label>
+                <input type="text" id="title" required placeholder="Digite o título">
+
+                <label for="description">Descrição:</label>
+                <textarea id="description" required placeholder="Digite a descrição"></textarea>
+
+                <label for="due_date">Data Limite:</label>
+                <input type="date" id="due_date" required>
+
+                <label for="goal">Meta de Tempo (em horas):</label>
+                <input type="number" id="goal" min="0" step="0.5" placeholder="Ex.: 2.5">
+
+                <button type="submit">Adicionar Tarefa</button>
+            </form>
+
+            <div id="tasks"></div>
+            <p id="total-time">Tempo Total Gasto: 00:00:00</p>
+        </div>
+
+        <!-- Rotina -->
+        <div id="routine" class="section hidden">
+            <h1>Planejamento de Rotinas</h1>
+
+            <!-- Formulário para adicionar rotinas -->
+            <form id="routine-form">
+                <label for="routine-name">Nome da Rotina:</label>
+                <input type="text" id="routine-name" placeholder="Ex.: Estudar Java" required>
+
+                <label for="routine-type">Tipo:</label>
+                <select id="routine-type" required>
+                    <option value="Trabalho">Trabalho</option>
+                    <option value="Estudo">Estudo</option>
+                    <option value="Treino">Treino</option>
+                    <option value="Lazer">Lazer</option>
+                </select>
+
+                <label for="routine-frequency">Frequência:</label>
+                <select id="routine-frequency" required>
+                    <option value="Diária">Diária</option>
+                    <option value="Semanal">Semanal</option>
+                    <option value="Mensal">Mensal</option>
+                </select>
+
+                <label for="routine-time">Horário:</label>
+                <input type="time" id="routine-time" required>
+
+                <button type="submit">Adicionar Rotina</button>
+            </form>
+
+            <!-- Lista de Rotinas -->
+            <div class="routine-list">
+                <h2>Suas Rotinas</h2>
+                <ul id="routine-items"></ul>
+            </div>
+
+            <!-- Relatório de Cumprimento -->
+            <div class="routine-report">
+                <h2>Relatório</h2>
+                <!--  Desativado <canvas id="routine-chart"></canvas>  -->
+            </div>
+        </div>
+
+
+        <!-- Financeiro -->
+        <div id="financial" class="section hidden">
+            <h1>Gestão Financeira</h1>
+
+            <!-- Resumo Financeiro -->
+            <div class="financial-summary">
+                <p><strong>Total de Ganhos:</strong> <span id="total-gains">R$ 0,00</span></p>
+                <p><strong>Total de Gastos:</strong> <span id="total-expenses">R$ 0,00</span></p>
+                <p><strong>Saldo:</strong> <span id="balance">R$ 0,00</span></p>
+            </div>
+
+            <!-- Definir Limite de Gastos -->
+            <div class="financial-limit">
+                <label for="spending-limit">Definir Limite de Gastos:</label>
+                <input type="number" id="spending-limit" placeholder="Ex.: 5000" />
+                <button id="update-limit">Atualizar Limite</button>
+                <button id="reset-limit">Redefinir Limite</button>
+            </div>
+
+            <!-- Formulário de Registro -->
+            <form id="financial-form">
+                <label for="description">Descrição:</label>
+                <input type="text" id="description" placeholder="Ex.: Salário, Mercado" required>
+
+                <label for="category">Categoria:</label>
+                <select id="category" required>
+                    <option value="Alimentação">Alimentação</option>
+                    <option value="Transporte">Transporte</option>
+                    <option value="Saúde">Saúde</option>
+                    <option value="Lazer">Lazer</option>
+                    <option value="Moradia">Moradia</option>
+                    <option value="Investimentos">Investimentos</option>
+                </select>
+
+                <label for="amount">Valor (positivo: ganho, negativo: gasto):</label>
+                <input type="number" id="amount" step="0.01" placeholder="Ex.: 150.00" required>
+
+                <label for="date">Data:</label>
+                <input type="date" id="date" required>
+
+                <button type="submit">Adicionar Registro</button>
+
+            </form>
+
+            <!-- Tabela de Registros -->
+            <div class="financial-records">
+                <h2>Registros</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Descrição</th>
+                            <th>Categoria</th>
+                            <th>Valor</th>
+                            <th>Data</th>
+                            <th>Ações</th> <!-- Nova coluna para ações -->
+                        </tr>
+                    </thead>
+                    <tbody id="records"></tbody>
+                </table>
+            </div>
+
+            <!-- Gráficos Financeiros -->
+            <div class="financial-charts">
+                <h2>Análise Financeira</h2>
+                <div class="chart-container">
+                    <!-- Gráfico de Colunas -->
+                    <canvas id="financial-chart" width="400" height="200"></canvas>
+
+                </div>
+                <div class="chart-container">
+                    <!-- Termômetro de Gastos -->
+                    <h3>Termômetro de Gastos</h3>
+                    <div class="progress-bar-container">
+                        <div id="spending-progress" class="progress-bar-fill"></div>
+                    </div>
+                    <p id="progress-percentage" class="progress-percentage">0%</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
