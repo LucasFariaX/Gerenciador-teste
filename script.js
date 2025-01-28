@@ -830,129 +830,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
-// Carrega o cliente da API ao carregar a página
-function handleClientLoad() {
-    gapi.load('client:auth2', initClient);
-}
-
-// Atualiza o status de login do usuário
-function updateSigninStatus(isSignedIn) {
-    const eventsContainer = document.getElementById('google-events');
-    if (isSignedIn) {
-        eventsContainer.textContent = 'Carregando eventos...';
-        listUpcomingEvents(); // Lista eventos se estiver autenticado
-    } else {
-        eventsContainer.textContent = 'Faça login para ver seus eventos do Google Calendar.';
-    }
-}
-
-// Realiza login no Google
-function handleAuthClick(event) {
-    gapi.auth2.getAuthInstance().signIn();
-}
-
-// Realiza logout do Google
-function handleSignoutClick(event) {
-    gapi.auth2.getAuthInstance().signOut();
-}
-
-// Lista os próximos eventos do Google Calendar
-function listUpcomingEvents() {
-    gapi.client.calendar.events.list({
-        calendarId: 'primary',
-        timeMin: (new Date()).toISOString(),
-        showDeleted: false,
-        singleEvents: true,
-        maxResults: 10,
-        orderBy: 'startTime'
-    }).then(response => {
-        const events = response.result.items;
-        const eventsContainer = document.getElementById('google-events');
-        eventsContainer.innerHTML = ''; // Limpa o conteúdo anterior
-
-        if (events.length > 0) {
-            events.forEach(event => {
-                const eventElement = document.createElement('div');
-                const eventTime = event.start.dateTime || event.start.date;
-                eventElement.textContent = `${event.summary} - ${eventTime}`;
-                eventElement.className = 'event-item';
-                eventsContainer.appendChild(eventElement);
-            });
-        } else {
-            eventsContainer.textContent = 'Nenhum evento encontrado.';
-        }
-    }, error => {
-        console.error('Erro ao listar eventos:', error);
-        document.getElementById('google-events').textContent = 'Erro ao carregar eventos.';
-    });
-}
-
-// Adiciona um evento ao Google Calendar
-function addEventToCalendar(event) {
-    gapi.client.calendar.events.insert({
-        calendarId: 'primary',
-        resource: event
-    }).then(response => {
-        console.log('Evento adicionado com sucesso:', response);
-        alert('Evento adicionado com sucesso!');
-        listUpcomingEvents(); // Atualiza a lista de eventos
-    }, error => {
-        console.error('Erro ao adicionar evento:', error);
-        alert('Erro ao adicionar evento.');
-    });
-}
-
-// Exemplo de uso: adicionando um evento manualmente
-document.getElementById('calendar-link').addEventListener('click', () => {
-    const newEvent = {
-        summary: 'Exemplo de Evento',
-        location: 'Online',
-        description: 'Evento criado para teste de integração.',
-        start: {
-            dateTime: '2025-02-01T10:00:00-03:00',
-            timeZone: 'America/Sao_Paulo'
-        },
-        end: {
-            dateTime: '2025-02-01T11:00:00-03:00',
-            timeZone: 'America/Sao_Paulo'
-        }
-    };
-    addEventToCalendar(newEvent);
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-    const loginButton = document.getElementById("google-login-button");
-    const loginCard = document.getElementById("google-login-card");
-
-    // Cria o overlay para fechar o card ao clicar fora
-    const overlay = document.createElement("div");
-    overlay.id = "google-overlay";
-    document.body.appendChild(overlay);
-
-    // Função para exibir o card de login e overlay
-    loginButton.addEventListener("click", () => {
-        loginCard.style.display = "block";
-        overlay.style.display = "block";
-    });
-
-    // Função para fechar o card de login ao clicar fora
-    overlay.addEventListener("click", () => {
-        loginCard.style.display = "none";
-        overlay.style.display = "none";
-    });
-
-    // Função para o botão "Logar com Google"
-    const googleLoginButton = document.getElementById("google-login");
-    googleLoginButton.addEventListener("click", () => {
-        window.open(
-            "https://accounts.google.com/o/oauth2/auth",
-            "Login com Google",
-            "width=500,height=600,left=200,top=100"
-        );
-    });
-});
-
 // Configurações da API do Google Calendar
 const CLIENT_ID = '1021694586430-jhd2ans80cnmqdinf9gqv36i3t5bhbvq.apps.googleusercontent.com';
 const API_KEY = 'AIzaSyC7j8JGpLqmewY4SSd9rVYAZCbdVBuv3WQ';
@@ -1048,9 +925,8 @@ function listUpcomingEvents() {
             if (events.length > 0) {
                 events.forEach((event) => {
                     const eventElement = document.createElement('div');
-                    eventElement.textContent = `${event.summary} - ${
-                        event.start.dateTime || event.start.date
-                    }`;
+                    eventElement.textContent = `${event.summary} - ${event.start.dateTime || event.start.date
+                        }`;
                     eventElement.className = 'event-item';
                     eventsContainer.appendChild(eventElement);
                 });
